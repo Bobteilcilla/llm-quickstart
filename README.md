@@ -2,13 +2,16 @@
 
 My first repo on the journey from Software Engineer → AI/LLM Engineer.
 Returning to tech after parental leave with a focused 16-week intensive plan.
-This is Day 1 of 112.
+This is Day 2 of 112.
 
 ## What's here
 
 - `hello_openai.py` — first call to OpenAI's `gpt-4o-mini`
 - `hello_anthropic.py` — first call to Anthropic's Claude Haiku 4.5
 - `compare.py` — same question, both models, side-by-side output
+- `compare_with_systemprompt.py` — same question, both models, with system prompts and XML structure
+- `stream_openai.py` / `stream_anthropic.py` — streaming responses (tokens appear live)
+- `extract_openai.py` / `extract_anthropic.py` — **structured outputs** with pydantic
 - `tests/` — smoke tests
 
 ## Setup
