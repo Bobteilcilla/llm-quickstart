@@ -22,6 +22,7 @@ Summarise any text/markdown file using Claude.
 uv run summarize README.md                    # streaming summary
 uv run summarize README.md --json             # structured JSON output
 uv run summarize README.md --length short     # 1-2 sentences
+uv run summarize README.md --model openai     # model that we use for the summary: openAi or Anthropic
 \`\`\`
 
 ## Setup
