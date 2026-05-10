@@ -14,6 +14,16 @@ This is Day 2 of 112.
 - `extract_openai.py` / `extract_anthropic.py` — **structured outputs** with pydantic
 - `tests/` — smoke tests
 
+## CLI: `summarize`
+
+Summarise any text/markdown file using Claude.
+
+\`\`\`bash
+uv run summarize README.md                    # streaming summary
+uv run summarize README.md --json             # structured JSON output
+uv run summarize README.md --length short     # 1-2 sentences
+\`\`\`
+
 ## Setup
 
 \`\`\`bash
