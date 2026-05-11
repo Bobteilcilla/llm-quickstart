@@ -132,7 +132,7 @@ def _openai_chat_json_completion(client: OpenAI, text: str, schema: str) -> Summ
         messages=messages,
     )
     raw_json = _strip_markdown_fences(response.choices[0].message.content)
-    _log_cost("gpt-4o-mini", response.usage.input_tokens, response.usage.output_tokens)
+    _log_cost("gpt-4o-mini", response.usage.prompt_tokens, response.usage.completion_tokens)
 
     try:
         return Summary.model_validate_json(raw_json)
@@ -154,7 +154,9 @@ def _openai_chat_json_completion(client: OpenAI, text: str, schema: str) -> Summ
             messages=messages,
         )
         retry_json = _strip_markdown_fences(retry_response.choices[0].message.content)
-    _log_cost("gpt-4o-mini", retry_response.usage.input_tokens, retry_response.usage.output_tokens)
+    _log_cost(
+        "gpt-4o-mini", retry_response.usage.prompt_tokens, retry_response.usage.completion_tokens
+    )
     return Summary.model_validate_json(retry_json)
 
 
