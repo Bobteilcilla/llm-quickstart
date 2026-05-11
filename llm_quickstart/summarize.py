@@ -127,12 +127,13 @@ def _openai_chat_json_completion(client: OpenAI, text: str, schema: str) -> Summ
 
     # First attempt
     response = client.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-4o-mini",
         max_tokens=1000,
         messages=messages,
     )
     raw_json = _strip_markdown_fences(response.choices[0].message.content)
-    _log_cost("gpt-4o", response.usage.input_tokens, response.usage.output_tokens)
+    _log_cost("gpt-4o-mini", response.usage.input_tokens, response.usage.output_tokens)
+
     try:
         return Summary.model_validate_json(raw_json)
     except ValidationError as e:
@@ -148,12 +149,12 @@ def _openai_chat_json_completion(client: OpenAI, text: str, schema: str) -> Summ
             }
         )
         retry_response = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-4o-mini",
             max_tokens=1000,
             messages=messages,
         )
         retry_json = _strip_markdown_fences(retry_response.choices[0].message.content)
-    _log_cost("gpt-4o", retry_response.usage.input_tokens, retry_response.usage.output_tokens)
+    _log_cost("gpt-4o-mini", retry_response.usage.input_tokens, retry_response.usage.output_tokens)
     return Summary.model_validate_json(retry_json)
 
 

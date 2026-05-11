@@ -63,6 +63,7 @@ cp .env.example .env  # then edit with real keys
 # 5. Run something
 uv run python compare.py
 \`\`\`
+uv run summarize README.md --model anthropic
 
 ## Stack
 
