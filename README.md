@@ -13,17 +13,41 @@ This is Day 2 of 112.
 - `stream_openai.py` / `stream_anthropic.py` — streaming responses (tokens appear live)
 - `extract_openai.py` / `extract_anthropic.py` — **structured outputs** with pydantic
 - `tests/` — smoke tests
+- `llm_quickstart\summarize.py` - A command-line tool to summarize a text in a json output or streaming.
 
 ## CLI: `summarize`
 
-Summarise any text/markdown file using Claude.
+Summarise any text/markdown file with streaming or structured JSON output.
+
+### Usage
 
 \`\`\`bash
-uv run summarize README.md                    # streaming summary
-uv run summarize README.md --json             # structured JSON output
-uv run summarize README.md --length short     # 1-2 sentences
-uv run summarize README.md --model openai     # model that we use for the summary: openAi or Anthropic
+# Streaming summary (default: medium length, Anthropic/Claude)
+uv run summarize README.md
+
+# Structured JSON output
+uv run summarize README.md --json
+
+# Control summary length
+uv run summarize README.md --length short      # 1-2 sentences
+uv run summarize README.md --length medium     # 3-5 sentences (default)
+uv run summarize README.md --length long       # 1-2 paragraphs
+
+# Choose LLM provider
+uv run summarize README.md --model anthropic   # Claude Haiku (default)
+uv run summarize README.md --model openai      # GPT-4o (JSON) or GPT-4o-mini (streaming)
+
+# Combine options
+uv run summarize README.md --model openai --length short --json
 \`\`\`
+
+### Features
+
+- **Dual LLM support**: Anthropic (Claude Haiku) or OpenAI (GPT-4o/mini)
+- **Two output modes**: Streaming (live tokens) or structured JSON with title, one-liner, key points, and audience
+- **Smart retries**: Invalid JSON responses trigger automatic self-correction
+- **Cost tracking**: Token usage and estimated costs logged to stderr
+- **Fallback handling**: If primary provider fails, automatically tries the other
 
 ## Setup
 
