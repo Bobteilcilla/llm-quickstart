@@ -49,6 +49,14 @@ uv run summarize README.md --model openai --length short --json
 - **Cost tracking**: Token usage and estimated costs logged to stderr
 - **Fallback handling**: If primary provider fails, automatically tries the other
 
+## Production patterns demonstrated
+
+- **Multi-provider abstraction** — Anthropic + OpenAI swappable via `--model`
+- **Streaming + structured outputs** — both response modes in one tool
+- **Fallback on API errors** — automatic retry on the other provider
+- **Self-correcting JSON** — retries with the validation error on invalid output
+- **Per-call cost logging** — token counts + $ cost on stderr (pipe-safe)
+
 ## Setup
 
 \`\`\`bash
@@ -63,7 +71,6 @@ cp .env.example .env  # then edit with real keys
 # 5. Run something
 uv run python compare.py
 \`\`\`
-uv run summarize README.md --model anthropic
 
 ## Stack
 
