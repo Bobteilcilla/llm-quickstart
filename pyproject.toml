@@ -20,6 +20,7 @@ dependencies = [
 [project.scripts]
 summarize = "llm_quickstart.summarize:app"
 tokenviz = "llm_quickstart.tokenviz:app"
+nearest = "llm_quickstart.nearest:app"
 
 [tool.uv]
 package = true
